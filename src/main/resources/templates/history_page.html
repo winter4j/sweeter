@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>history</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class="container">
+<br/>
+<h1>历史记录</h1>
+<br/><br/>
+<div class="with:80%">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#使用</th>
+            <th>时间</th>
+            <th>FROM</th>
+            <th>TO</th>
+            <th>类型</th>
+            <th>说明</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="use : ${uses}">
+            <th scope="row" th:text="${use.getId()}">1</th>
+            <td th:text="${use.getDate()}">时间</td>
+            <td th:text="${use.getFromUserName()}">FROM</td>
+            <td th:text="${use.getToUserName()}">TO</td>
+            <td th:text="${use.getResName()}">类型</td>
+            <td>
+            <button type="button" class="btn btn-success btn-xs"
+                    data-container="body" data-toggle="popover" data-placement="bottom"
+                    th:attr="data-content=${use.getContent()}">
+                点击查看
+            </button>
+            </td>
+            <td th:text="${use.getState().toString()}">状态</td>
+            <td><a th:if="${use.isClosable()}" th:href="@{/close(id=${use.getId()})}">关闭</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#赠予</th>
+            <th>时间</th>
+            <th>FROM</th>
+            <th>TO</th>
+            <th>杏</th>
+            <th>冬</th>
+            <th>说明</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="give : ${gives}">
+            <th scope="row" th:text="${give.getId()}">1</th>
+            <td th:text="${give.getDate()}">时间</td>
+            <td th:text="${give.getFromUserName()}">FROM</td>
+            <td th:text="${give.getToUserName()}">TO</td>
+            <td th:text="${give.getXing()}">杏</td>
+            <td th:text="${give.getDong()}">冬</td>
+            <td>
+                <button type="button" class="btn btn-success btn-xs"
+                        data-container="body" data-toggle="popover" data-placement="bottom"
+                        th:attr="data-content=${give.getContent()}">
+                    点击查看
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <script>
+        $(function (){
+            $("[data-toggle='popover']").popover();
+        });
+    </script>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/redirect/home}" class="btn btn-info">返回主页</a>
+    </div>
+</div>
+
+</body>
+</html>
