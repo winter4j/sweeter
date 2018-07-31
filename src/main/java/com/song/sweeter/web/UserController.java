@@ -12,7 +12,6 @@ import com.song.sweeter.entity.Give;
 import com.song.sweeter.entity.Consume;
 import com.song.sweeter.entity.User;
 import com.song.sweeter.service.GiveService;
-import com.song.sweeter.service.HistoryService;
 import com.song.sweeter.service.ConsumeService;
 import com.song.sweeter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +33,6 @@ public class UserController extends BaseController {
 
     @Resource
     private UserService userService;
-    @Resource
-    private HistoryService historyService;
     @Autowired
     private ResourceFactory resourceFactory;
     @Autowired
