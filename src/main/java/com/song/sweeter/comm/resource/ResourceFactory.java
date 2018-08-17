@@ -13,7 +13,9 @@ public class ResourceFactory {
 //    public static ResourceFactory getInstance(){
 //        return instance;
 //    }
-//    private ResourceFactory(){}
+    public ResourceFactory(){
+        System.out.println("ResourceFactory new ");
+    }
 
     @Autowired
     private ResourceService resourceService;

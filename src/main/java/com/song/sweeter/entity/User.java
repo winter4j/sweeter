@@ -25,6 +25,8 @@ public class User {
     private Date lastLogin;
     @Column(nullable = false)
     private Long half = 0L;
+    @Column(nullable = false)
+    private int egg = 0;
 
     private transient String halfName;
 
@@ -105,5 +107,13 @@ public class User {
 
     public void setHalfName(String halfName) {
         this.halfName = halfName;
+    }
+
+    public int getEgg() {
+        return egg;
+    }
+
+    public void setEgg(int egg) {
+        this.egg = egg;
     }
 }

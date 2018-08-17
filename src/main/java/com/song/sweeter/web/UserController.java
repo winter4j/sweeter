@@ -118,6 +118,7 @@ public class UserController extends BaseController {
             resDtos.add(temp);
         }
         model.addAttribute("resDtos", resDtos);
+        model.addAttribute("showEgg", user.getEgg() > 0);
         //成功登陆进入主页
         return "home_page";
     }
@@ -273,6 +274,21 @@ public class UserController extends BaseController {
         User half = userService.findUserById(user.getHalf());
         model.addAttribute("halfName", half.getUserName());
         return "give_page";
+    }
+
+    @RequestMapping("/getEgg")
+    public String getEgg(Model model) {
+        UserDto userDto = getUserDto();
+        if(userDto == null){
+            return "login_page";
+        }
+        User user = userService.findUserById(userDto.getId());
+        if(user.getHalf() <= 0){
+            return "redirect:/home";
+        }
+        String content = "";
+        model.addAttribute("content", content);
+        return "egg_page";
     }
 
     @RequestMapping(value = "/give", method = RequestMethod.POST)
